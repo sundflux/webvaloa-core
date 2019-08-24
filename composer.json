@@ -16,6 +16,6 @@
         "php": ">=7.2.19"
     },
     "autoload": {
-        "psr-4": {"Webaloa\\": "src/Webaloa"}
+        "psr-4": {"Webvaloa\\": "src/Webvaloa"}
     }
 }

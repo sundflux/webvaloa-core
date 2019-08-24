@@ -40,7 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.1] - 2019-08-24
+- Hotfix for autoloader names.
+
 ### [3.0.0] - 2019-08-24
 - First version separated from Webvaloa main repository as a package. 
-- Move setting default controllers from webvaloa index.php to FrontController
-~~~~
+- Move setting default controllers from webvaloa index.php to FrontController.
