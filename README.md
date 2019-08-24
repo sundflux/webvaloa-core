@@ -31,7 +31,7 @@ Libvaloa is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
 
-- http://WWW.webvaloa.com/
+- http://www.webvaloa.com/
 
 ## Change Log
 All notable changes to this project will be documented in this file.
