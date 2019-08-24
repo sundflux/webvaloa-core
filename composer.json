@@ -1,0 +1,21 @@
+{
+    "name": "sundflux/webvaloa-core",
+    "description": "Webvaloa core, part of Webaloa platform",
+    "keywords": ["webvaloa"],
+    "homepage": "http://github.com/sundflux/webvaloa-core",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tarmo Alexander Sundstrom",
+            "email": "ta@sundstrom.io",
+            "homepage": "http://www.webvaloa.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.19"
+    },
+    "autoload": {
+        "psr-4": {"Webaloa\\": "src/Webaloa"}
+    }
+}
