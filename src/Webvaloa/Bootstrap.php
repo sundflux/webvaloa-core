@@ -44,8 +44,9 @@ class Bootstrap
      */
     public function __construct()
     {
-        // Base path on the server
-        define('WEBVALOA_BASEDIR', realpath(dirname(__FILE__)));
+        if (!defined('WEBVALOA_BASEDIR')) {
+            die('WEBVALOA_BASEDIR must be set before initializing core.');
+        }
 
         // Core paths
         if (!defined('LIBVALOA_INSTALLPATH')) {

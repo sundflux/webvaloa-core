@@ -33,15 +33,22 @@
 
 namespace Webvaloa;
 
+// Require core files
+require_once 'Webvaloa/Bootstrap.php';
+require_once 'Webvaloa/Webvaloa.php';
+require_once 'Webvaloa/Application.php';
+require_once 'Webvaloa/Applicationui.php';
+require_once 'Webvaloa/FrontController.php';
+
 // Load runtime configuration
-$bootstrap = new Bootstrap();
+$bootstrap = new \Webvaloa\Bootstrap();
 $bootstrap->loadRuntimeConfiguration();
 
 // Load the kernel
 new Webvaloa();
 
 // Wake up frontcontroller
-$frontcontroller = new FrontController();
+$frontController = new FrontController();
 
 // Run the frontcontroller
-echo $frontcontroller->runController();
+echo $frontController->runController();
