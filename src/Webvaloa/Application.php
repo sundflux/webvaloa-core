@@ -39,8 +39,7 @@ use stdClass;
 use Exception;
 
 /**
- * Class Application
- * @package Webvaloa
+ * Class Application.
  */
 class Application
 {
@@ -51,6 +50,7 @@ class Application
 
     /**
      * @param $k
+     *
      * @return stdClass|string|void|Request|DB|Plugin
      */
     public function __get($k)
@@ -97,6 +97,7 @@ class Application
 
     /**
      * @param $k
+     *
      * @return bool
      */
     public function __isset($k)
@@ -120,17 +121,17 @@ class Application
 
         try {
             // Plugin event: onAfterController
-            $this->plugin->request = & $this->request;
+            $this->plugin->request = &$this->request;
 
             if ($this->plugin->hasRunnablePlugins()) {
                 $this->plugin->setEvent('onAfterController');
 
                 // Give stuff for plugins to modify
-                $this->plugin->ui           = & $this->ui;
-                $this->plugin->view         = & $this->view;
-                $this->plugin->controller   = false; // Controller cannot be modified at this point
-                $this->plugin->xhtml        = false; // Xhtml output is not available at this point
-                $this->plugin->_properties  = false;
+                $this->plugin->ui = &$this->ui;
+                $this->plugin->view = &$this->view;
+                $this->plugin->controller = false; // Controller cannot be modified at this point
+                $this->plugin->xhtml = false; // Xhtml output is not available at this point
+                $this->plugin->_properties = false;
 
                 // Run plugins
                 $this->plugin->runPlugins();
@@ -175,18 +176,18 @@ class Application
                 $this->plugin->setEvent('onAfterRender');
 
                 // Give stuff for plugins to modify
-                $this->plugin->ui           = false; // UI cannot be modified at this point
-                $this->plugin->view         = $this->view; // View is available after render for reading, but not modifiable at this point
-                $this->plugin->controller   = false; // Controller cannot be modified at this point
-                $this->plugin->xhtml        = & $xhtml;
-                $this->plugin->_properties  = false;
+                $this->plugin->ui = false; // UI cannot be modified at this point
+                $this->plugin->view = $this->view; // View is available after render for reading, but not modifiable at this point
+                $this->plugin->controller = false; // Controller cannot be modified at this point
+                $this->plugin->xhtml = &$xhtml;
+                $this->plugin->_properties = false;
 
                 // Run plugins
                 $this->plugin->runPlugins();
             }
 
             Debug::__print('Executed '.\Libvaloa\Db\Db::$querycount.' sql queries.');
-            Debug::__print('Webvaloa finished with peak memory usage: '. round(memory_get_peak_usage(false) / 1024 / 1024, 2) .' MB');
+            Debug::__print('Webvaloa finished with peak memory usage: '.round(memory_get_peak_usage(false) / 1024 / 1024, 2).' MB');
 
             return $xhtml;
         } catch (Exception $e) {

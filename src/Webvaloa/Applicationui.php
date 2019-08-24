@@ -44,10 +44,8 @@ use Webvaloa\Controller\Request;
  *
  * @uses \Webvaloa\Controller\Request
  * @uses \Libvaloa\Ui
- * @package Webvaloa
  */
-
-class ApplicationUI
+class Applicationui
 {
     /**
      * @var bool
@@ -84,7 +82,7 @@ class ApplicationUI
             'Layout'.'/'.Webvaloa::$properties['layout'].'/'.'Views',
             'Layout'.'/'.Webvaloa::$properties['layout'].'/'.$request->getMainController().'/'.'Views',
             'Controllers'.'/'.$request->getMainController().'/'.'Views',
-            'Plugins'
+            'Plugins',
         ];
 
         foreach ($systemPaths as $path) {

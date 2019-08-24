@@ -45,8 +45,6 @@ use RuntimeException;
 /**
  * Class FrontController
  * FrontController, runs components and plugins.
- *
- * @package Webvaloa
  */
 class FrontController
 {
@@ -88,6 +86,7 @@ class FrontController
 
     /**
      * @return string
+     *
      * @throws \ReflectionException
      */
     public function runController()
@@ -389,6 +388,7 @@ class FrontController
     /**
      * @param $controller
      * @param int $pos
+     *
      * @return string
      */
     public static function getControllerName($controller, $pos = 0)
@@ -409,6 +409,7 @@ class FrontController
 
     /**
      * @param $controller
+     *
      * @return string
      */
     public static function getMainControllerName($controller)
@@ -418,6 +419,7 @@ class FrontController
 
     /**
      * @param $controller
+     *
      * @return string
      */
     public static function getChildControllerName($controller)

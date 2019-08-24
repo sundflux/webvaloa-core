@@ -34,8 +34,7 @@
 namespace Webvaloa;
 
 /**
- * Class Bootstrap
- * @package Webvaloa
+ * Class Bootstrap.
  */
 class Bootstrap
 {
@@ -93,7 +92,7 @@ class Bootstrap
         } elseif (file_exists(WEBVALOA_BASEDIR.'/config/config.php') && !is_readable(WEBVALOA_BASEDIR.'/config/config.php')) {
             // Configuration exists, but is not readable, so don't proceed
 
-            die("Configuration exists, but configuration is not readable.");
+            die('Configuration exists, but configuration is not readable.');
         } elseif (!file_exists(WEBVALOA_BASEDIR.'/config/config.php') && file_exists(WEBVALOA_BASEDIR.'/config/config.php-stub')) {
             // Configuration doesn't exist, but -stub does, so we can
             // assume clean install - copy stub file as temporary configuration
@@ -104,7 +103,7 @@ class Bootstrap
                 header('location: '.$_SERVER['REQUEST_URI']);
                 exit;
             } else {
-                die("Could not copy configuration.");
+                die('Could not copy configuration.');
             }
         } else {
             die('Could not load runtime configuration.');

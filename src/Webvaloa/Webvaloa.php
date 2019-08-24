@@ -56,7 +56,6 @@ class Webvaloa
      */
     public static $db = false;
 
-
     /**
      * Static var to track if Webvaloa kernel has been loaded.
      */
@@ -73,12 +72,12 @@ class Webvaloa
     public static $session = false;
 
     /**
-     * Whoops
+     * Whoops.
      */
     public $whoops;
 
     /**
-     * Cli
+     * Cli.
      */
     public static $cli = false;
 
@@ -91,11 +90,11 @@ class Webvaloa
      * layout               - template name for ui
      */
     public static $properties = array(
-        'startSession'        => 1,
-        'sessionMaxlifetime'  => 3600,
-        'ui'                  => 'Libvaloa\Ui\Xml',
-        'vendor'              => 'ValoaApplication',
-        'layout'              => 'default',
+        'startSession' => 1,
+        'sessionMaxlifetime' => 3600,
+        'ui' => 'Libvaloa\Ui\Xml',
+        'vendor' => 'ValoaApplication',
+        'layout' => 'default',
     );
 
     /**
@@ -112,8 +111,8 @@ class Webvaloa
             set_exception_handler(array('Webvaloa\Webvaloa', 'exceptionHandler'));
         } else {
             // Register whoops for developer mode
-            $this->whoops = new \Whoops\Run;
-            $this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $this->whoops = new \Whoops\Run();
+            $this->whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
             $this->whoops->register();
         }
 
@@ -126,7 +125,7 @@ class Webvaloa
      */
     public static function isCommandLine()
     {
-        if (php_sapi_name() == "cli") {
+        if (php_sapi_name() == 'cli') {
             return true;
         }
 
@@ -140,13 +139,13 @@ class Webvaloa
     {
         // Start the session
 
-        if (Webvaloa::$properties['startSession'] > 0 && !self::$session) {
+        if (self::$properties['startSession'] > 0 && !self::$session) {
             // Set session lifetime from config, if available
 
             if (class_exists('\\Webvaloa\\config') && isset(\Webvaloa\config::$properties['sessionMaxlifetime']) && !empty(\Webvaloa\config::$properties['sessionMaxlifetime'])) {
                 $sessionMaxlifetime = (string) \Webvaloa\config::$properties['sessionMaxlifetime'];
             } else {
-                $sessionMaxlifetime = (string) Webvaloa::$properties['sessionMaxlifetime'];
+                $sessionMaxlifetime = (string) self::$properties['sessionMaxlifetime'];
             }
 
             if (function_exists('ini_set')) {
@@ -198,7 +197,6 @@ class Webvaloa
     /**
      * Class autoloader.
      *
-     * @access public
      *
      * @param string $name Class name
      */
@@ -207,13 +205,13 @@ class Webvaloa
         // Autoloading standard:
         // http://www.php-fig.org/psr/psr-0/
         $className = ltrim($name, '\\');
-        $fileName  = '';
+        $fileName = '';
         $namespace = '';
 
         if ($lastNsPos = strrpos($className, '\\')) {
             $namespace = substr($className, 0, $lastNsPos);
             $className = substr($className, $lastNsPos + 1);
-            $fileName  = str_replace('\\', '/', $namespace).'/';
+            $fileName = str_replace('\\', '/', $namespace).'/';
         }
 
         $fileName .= str_replace('_', '/', $className).'.php';
@@ -225,6 +223,7 @@ class Webvaloa
             }
 
             include_once $v.'/'.$fileName;
+
             return;
         }
     }
@@ -232,7 +231,6 @@ class Webvaloa
     /**
      * Opens database connection.
      *
-     * @access static
      *
      * @return DB database connection
      *
@@ -249,7 +247,7 @@ class Webvaloa
 
                 // Make sure we use UTF-8
                 if (\Webvaloa\config::$properties['db_server'] != 'sqlite') {
-                    $initquery = "SET NAMES utf8mb4";
+                    $initquery = 'SET NAMES utf8mb4';
                     if (isset(\Webvaloa\config::$properties['time_zone'])) {
                         date_default_timezone_set(\Webvaloa\config::$properties['time_zone']);
                         $date = new \DateTime();
@@ -289,17 +287,17 @@ class Webvaloa
      */
     public static function exceptionHandler($e)
     {
-        print '<h3>An error occured which could not be fixed.</h3>';
+        echo '<h3>An error occured which could not be fixed.</h3>';
         printf('<p>%s</p>', $e->getMessage());
         if ($e->getCode()) {
-            print ' ('.$e->getCode().')';
+            echo ' ('.$e->getCode().')';
         }
         if (error_reporting() == E_ALL) {
             printf('<p><b>Location:</b> %s line %s.</p>', $e->getFile(), $e->getLine());
-            print '<h4>Exception backtrace:</h4>';
-            print '<pre>';
+            echo '<h4>Exception backtrace:</h4>';
+            echo '<pre>';
             print_r($e->getTrace());
-            print '</pre>';
+            echo '</pre>';
         }
     }
 
@@ -366,12 +364,12 @@ class Webvaloa
         $translate = new Translate($params);
 
         // Default to installpath
-        if (file_exists(LIBVALOA_INSTALLPATH.'/'.Webvaloa::$properties['vendor'].'/'.'Locale'.'/'.self::getLocale().'/'.'LC_MESSAGES'.'/'.$domain.'.ini')) {
+        if (file_exists(LIBVALOA_INSTALLPATH.'/'.self::$properties['vendor'].'/'.'Locale'.'/'.self::getLocale().'/'.'LC_MESSAGES'.'/'.$domain.'.ini')) {
             $path = LIBVALOA_INSTALLPATH;
         }
 
         // Override from extensionspath if found
-        if (file_exists(LIBVALOA_EXTENSIONSPATH.'/'.Webvaloa::$properties['vendor'].'/'.'Locale'.'/'.self::getLocale().'/'.'LC_MESSAGES'.'/'.$domain.'.ini')) {
+        if (file_exists(LIBVALOA_EXTENSIONSPATH.'/'.self::$properties['vendor'].'/'.'Locale'.'/'.self::getLocale().'/'.'LC_MESSAGES'.'/'.$domain.'.ini')) {
             $path = LIBVALOA_EXTENSIONSPATH;
         }
 
@@ -380,7 +378,7 @@ class Webvaloa
             return $args[0];
         }
 
-        $translate->bindTextDomain($domain, $path.'/'.Webvaloa::$properties['vendor'].'/'.'Locale');
+        $translate->bindTextDomain($domain, $path.'/'.self::$properties['vendor'].'/'.'Locale');
         $t = (string) $translate;
 
         return $t;
