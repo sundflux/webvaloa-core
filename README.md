@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.2] - 2019-08-24
+- Hotfix for bootstrapping.
+
 ### [3.0.1] - 2019-08-24
 - Hotfix for autoloader names.
 
