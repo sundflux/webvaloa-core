@@ -33,16 +33,20 @@
 
 namespace Webvaloa;
 
-use Webvaloa\Bootstrap;
-
+// Check that index.php defines basedir.
 if (!defined('WEBVALOA_BASEDIR')) {
     die('WEBVALOA_BASEDIR must be set before initializing core.');
 }
 
-// Require autoloader
+// Check that composer autoloader exists.
+if (!file_exists(WEBVALOA_BASEDIR.'/vendor/autoload.php')) {
+    die('Please install dependencies first, run: composer install');
+}
+
+// Require autoloader.
 require_once WEBVALOA_BASEDIR.'/vendor/autoload.php';
 
-// Load runtime configuration
+// Load runtime configuration.
 $bootstrap = new Bootstrap();
 $bootstrap->loadRuntimeConfiguration();
 

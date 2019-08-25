@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.5] - 2019-08-25
+- Refactor autoloading again, include dotenv loading.
+
 ### [3.0.4] - 2019-08-25
 - Refactor autoloading.
 

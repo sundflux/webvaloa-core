@@ -33,6 +33,8 @@
 
 namespace Webvaloa;
 
+use Symfony\Component\Dotenv\Dotenv;
+
 /**
  * Class Bootstrap.
  */
@@ -70,13 +72,6 @@ class Bootstrap
         // Include paths
         set_include_path(LIBVALOA_EXTENSIONSPATH.'/'.PATH_SEPARATOR.get_include_path());
         set_include_path(LIBVALOA_INSTALLPATH.'/'.PATH_SEPARATOR.get_include_path());
-
-        // Composer autoloader
-        if (!file_exists(LIBVALOA_INSTALLPATH.'/autoload.php')) {
-            die('Please install dependencies first, run: composer install');
-        }
-
-        include_once LIBVALOA_INSTALLPATH.'/autoload.php';
     }
 
     /**
@@ -84,6 +79,10 @@ class Bootstrap
      */
     public function loadRuntimeConfiguration()
     {
+        // Load dotenv
+        $dotEnv = new Dotenv();
+        $dotEnv->load(WEBVALOA_BASEDIR.'/.env');
+
         // Include separate config-file
         if (is_readable(WEBVALOA_BASEDIR.'/config/config.php')) {
             // Configuration found
