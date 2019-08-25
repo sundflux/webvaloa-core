@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.4] - 2019-08-25
+- Refactor autoloading.
+
 ### [3.0.3] - 2019-08-24
 - Hotfix, refactoring and CS style fixer.
 

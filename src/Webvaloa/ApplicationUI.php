@@ -45,7 +45,7 @@ use Webvaloa\Controller\Request;
  * @uses \Webvaloa\Controller\Request
  * @uses \Libvaloa\Ui
  */
-class Applicationui
+class ApplicationUI
 {
     /**
      * @var bool

@@ -33,15 +33,17 @@
 
 namespace Webvaloa;
 
-// Require core files
-require_once 'Webvaloa/Bootstrap.php';
-require_once 'Webvaloa/Webvaloa.php';
-require_once 'Webvaloa/Application.php';
-require_once 'Webvaloa/Applicationui.php';
-require_once 'Webvaloa/FrontController.php';
+use Webvaloa\Bootstrap;
+
+if (!defined('WEBVALOA_BASEDIR')) {
+    die('WEBVALOA_BASEDIR must be set before initializing core.');
+}
+
+// Require autoloader
+require_once WEBVALOA_BASEDIR.'/vendor/autoload.php';
 
 // Load runtime configuration
-$bootstrap = new \Webvaloa\Bootstrap();
+$bootstrap = new Bootstrap();
 $bootstrap->loadRuntimeConfiguration();
 
 // Load the kernel
