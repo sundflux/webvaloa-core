@@ -62,10 +62,11 @@ class ApplicationUI
         }
 
         $request = Request::getInstance();
+        $config = new Configuration();
 
         // Force protocol
-        if (class_exists('\\Webvaloa\\config') && isset(\Webvaloa\config::$properties['force_protocol']) && !empty(\Webvaloa\config::$properties['force_protocol'])) {
-            $request->setProtocol(\Webvaloa\config::$properties['force_protocol']);
+        if ($config->force_protocol) {
+            $request->setProtocol($config->force_protocol);
         }
 
         // UI

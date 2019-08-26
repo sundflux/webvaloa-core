@@ -59,10 +59,11 @@ class Application
 
         if ($k === 'request') {
             $this->request = Request::getInstance();
+            $config = new Configuration();
 
             // Force protocol
-            if (class_exists('\\Webvaloa\\config') && isset(\Webvaloa\config::$properties['force_protocol']) && !empty(\Webvaloa\config::$properties['force_protocol'])) {
-                $this->request->setProtocol(\Webvaloa\config::$properties['force_protocol']);
+            if (!empty($config->force_protocol)) {
+                $this->request->setProtocol($config->force_protocol);
             }
 
             return $this->request;

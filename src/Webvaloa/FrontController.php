@@ -70,17 +70,18 @@ class FrontController
     {
         $this->plugin = new Plugin();
 
-        // Set up default controllers
-        if (class_exists('\\Webvaloa\\config')) {
-            // Default controller
-            if (isset(\Webvaloa\config::$properties['default_controller'])) {
-                self::$properties['defaultController'] = \Webvaloa\config::$properties['default_controller'];
-            }
+        $config = new Configuration();
 
-            // Default controller when logged in
-            if (isset(\Webvaloa\config::$properties['default_controller_authed'])) {
-                self::$properties['defaultControllerAuthed'] = \Webvaloa\config::$properties['default_controller_authed'];
-            }
+        // Set up default controllers
+
+        // Default controller
+        if (!empty($config->default_controller)) {
+            self::$properties['defaultController'] = $config->default_controller;
+        }
+
+        // Default controller when logged in
+        if (!empty($config->default_controller_authed)) {
+            self::$properties['defaultControllerAuthed'] = $config->default_controller_authed;
         }
     }
 
@@ -100,9 +101,11 @@ class FrontController
             $request->mapCommandLine();
         }
 
+        $config = new Configuration();
+
         // Force protocol
-        if (class_exists('\\Webvaloa\\config') && isset(\Webvaloa\config::$properties['force_protocol']) && !empty(\Webvaloa\config::$properties['force_protocol'])) {
-            $request->setProtocol(\Webvaloa\config::$properties['force_protocol']);
+        if (!empty($config->force_protocol)) {
+            $request->setProtocol($config->force_protocol);
         }
 
         if (strlen($request->getParam(0)) > 0) {
@@ -251,7 +254,8 @@ class FrontController
 
             // Not public, check for authorization
             if (!$component->isPublic()) {
-                $backend = \Webvaloa\config::$properties['webvaloa_auth'];
+                $config = new Configuration();
+                $backend = $config->webvaloa_auth;
 
                 $auth = new Auth();
                 $auth->setAuthenticationDriver(new $backend());
@@ -259,11 +263,11 @@ class FrontController
                 $userid = (isset($_SESSION['UserID']) ? $_SESSION['UserID'] : false);
 
                 if (!$auth->authorize($controller, $userid)) {
-                    if ($userid === false && isset(\Webvaloa\config::$properties['default_controller_login'])) {
-                        Redirect::to(\Webvaloa\config::$properties['default_controller_login']);
+                    if ($userid === false && $config->default_controller_login) {
+                        Redirect::to($config->default_controller_login);
                     }
-                    if ($userid !== false && isset(\Webvaloa\config::$properties['default_controller_denied'])) {
-                        Redirect::to(\Webvaloa\config::$properties['default_controller_denied']);
+                    if ($userid !== false && $config->default_controller_denied) {
+                        Redirect::to($config->default_controller_denied);
                     }
                     throw new RuntimeException('Access denied');
                 }
@@ -322,10 +326,11 @@ class FrontController
     public static function defaults()
     {
         $request = Request::getInstance();
+        $config = new Configuration();
 
         // Force protocol
-        if (class_exists('\\Webvaloa\\config') && isset(\Webvaloa\config::$properties['force_protocol']) && !empty(\Webvaloa\config::$properties['force_protocol'])) {
-            $request->setProtocol(\Webvaloa\config::$properties['force_protocol']);
+        if (!empty($config->force_protocol)) {
+            $request->setProtocol($config->force_protocol);
         }
 
         if (!$request->getController() || !self::controllerExists()) {

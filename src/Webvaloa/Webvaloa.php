@@ -141,9 +141,10 @@ class Webvaloa
 
         if (self::$properties['startSession'] > 0 && !self::$session) {
             // Set session lifetime from config, if available
+            $config = new Configuration();
 
-            if (class_exists('\\Webvaloa\\config') && isset(\Webvaloa\config::$properties['sessionMaxlifetime']) && !empty(\Webvaloa\config::$properties['sessionMaxlifetime'])) {
-                $sessionMaxlifetime = (string) \Webvaloa\config::$properties['sessionMaxlifetime'];
+            if (!empty($config->sessionmaxfiletime)) {
+                $sessionMaxlifetime = $config->sessionmaxfiletime;
             } else {
                 $sessionMaxlifetime = (string) self::$properties['sessionMaxlifetime'];
             }
@@ -240,16 +241,13 @@ class Webvaloa
     {
         if (!self::$db instanceof \Libvaloa\Db\Db) {
             try {
-                // Don't try to load database connection if config doesn't exist.
-                if (!class_exists('\\Webvaloa\\config')) {
-                    return false;
-                }
+                $config = new Configuration();
 
                 // Make sure we use UTF-8
-                if (\Webvaloa\config::$properties['db_server'] != 'sqlite') {
+                if ($config->db_server != 'sqlite') {
                     $initquery = 'SET NAMES utf8mb4';
-                    if (isset(\Webvaloa\config::$properties['time_zone'])) {
-                        date_default_timezone_set(\Webvaloa\config::$properties['time_zone']);
+                    if (!empty($config->time_zone)) {
+                        date_default_timezone_set($config->time_zone);
                         $date = new \DateTime();
                         $hours = $date->getOffset() / 3600;
                         $seconds = 60 * ($hours - floor($hours));
@@ -260,17 +258,17 @@ class Webvaloa
                     $initquery = '';
                 }
 
-                if (!isset(\Webvaloa\config::$properties['db_db'])) {
+                if (empty($config->db)) {
                     return self::$db = false;
                 }
 
                 // Initialize the db connection
                 self::$db = new \Libvaloa\Db\Db(
-                    \Webvaloa\config::$properties['db_host'],
-                    \Webvaloa\config::$properties['db_user'],
-                    \Webvaloa\config::$properties['db_pass'],
-                    \Webvaloa\config::$properties['db_db'],
-                    \Webvaloa\config::$properties['db_server'],
+                    $config->db_host,
+                    $config->db_user,
+                    $config->db_pass,
+                    $config->db,
+                    $config->db_server,
                     false,
                     $initquery
                 );
