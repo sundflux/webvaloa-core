@@ -41,7 +41,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 Changes are grouped by added, fixed or changed feature.
 
 ### [3.0.6] - 2019-08-26
-- Refactoring to get rid of Webvaloa::config
+- Refactoring to get rid of Webvaloa::config.
+- Add configuration as part of core package.
 
 ### [3.0.5] - 2019-08-25
 - Refactor autoloading again, include dotenv loading.
