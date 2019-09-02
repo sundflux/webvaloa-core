@@ -187,7 +187,7 @@ class Application
                 $this->plugin->runPlugins();
             }
 
-            Debug::__print('Executed '.\Libvaloa\Db\Db::$querycount.' sql queries.');
+            Debug::__print('Executed '.\Libvaloa\Db\Db::$queryCount.' sql queries.');
             Debug::__print('Webvaloa finished with peak memory usage: '.round(memory_get_peak_usage(false) / 1024 / 1024, 2).' MB');
 
             return $xhtml;

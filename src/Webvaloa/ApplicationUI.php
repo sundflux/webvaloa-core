@@ -33,7 +33,7 @@
 
 namespace Webvaloa;
 
-use Webvaloa\Helpers\Path;
+use Webvaloa\Path;
 use Webvaloa\Controller\Request;
 
 /**
