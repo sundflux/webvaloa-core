@@ -81,7 +81,7 @@ class Bootstrap
     {
         // Load dotenv
         $dotEnv = new Dotenv();
-        $dotEnv->load(WEBVALOA_BASEDIR.'/.env');
+        $dotEnv->load(WEBVALOA_BASEDIR.'/config/.env');
 
         // Include separate config-file
         if (is_readable(WEBVALOA_BASEDIR.'/config/config.php')) {

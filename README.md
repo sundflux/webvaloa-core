@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.8] - 2019-09-03
+- Move /.env to /config/.env.
+
 ### [3.0.7] - 2019-09-02
 - Refactor filesystem and path out of Helpers.
 
