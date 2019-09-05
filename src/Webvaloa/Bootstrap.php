@@ -79,6 +79,11 @@ class Bootstrap
      */
     public function loadRuntimeConfiguration()
     {
+        // If .env doesn't exist, copy env.dist as .env
+        if (!file_exists(WEBVALOA_BASEDIR.'/config/.env') && file_exists(WEBVALOA_BASEDIR.'/config/.env.dist')) {
+            copy(WEBVALOA_BASEDIR.'/config/.env.dist', WEBVALOA_BASEDIR.'/config/.env');
+        }
+
         // Load dotenv
         $dotEnv = new Dotenv();
         $dotEnv->load(WEBVALOA_BASEDIR.'/config/.env');
