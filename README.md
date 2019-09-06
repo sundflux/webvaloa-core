@@ -40,7 +40,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
-### [3.0.8] - 2019-09-05
+### [3.0.10] - 2019-09-06
+- Catch and ignore exceptions in component.
+
+### [3.0.9] - 2019-09-05
 - Copy .env.dist as .env if it doesn't exist.
 
 ### [3.0.8] - 2019-09-03

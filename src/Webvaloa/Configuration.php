@@ -219,6 +219,11 @@ class Configuration
             }
 
             return $this->config;
+        } catch(\Libvaloa\Db\DBException $e) {
+            // Configuration should work without database.
+            \Libvaloa\Debug\Debug::__print($e->getMessage());
+
+            return false;
         } catch (Exception $e) {
         }
     }
