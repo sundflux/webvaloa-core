@@ -143,7 +143,7 @@ class Webvaloa
             // Set session lifetime from config, if available
             $config = new Configuration();
 
-            if (!empty($config->sessionmaxfiletime)) {
+            if ($config->sessionmaxfiletime) {
                 $sessionMaxlifetime = $config->sessionmaxfiletime;
             } else {
                 $sessionMaxlifetime = (string) self::$properties['sessionMaxlifetime'];
@@ -246,7 +246,7 @@ class Webvaloa
                 // Make sure we use UTF-8
                 if ($config->db_server != 'sqlite') {
                     $initquery = 'SET NAMES utf8mb4';
-                    if (!empty($config->time_zone)) {
+                    if ($config->time_zone) {
                         date_default_timezone_set($config->time_zone);
                         $date = new \DateTime();
                         $hours = $date->getOffset() / 3600;
@@ -258,7 +258,7 @@ class Webvaloa
                     $initquery = '';
                 }
 
-                if (empty($config->db)) {
+                if ($config->db == '') {
                     return self::$db = false;
                 }
 

@@ -75,12 +75,12 @@ class FrontController
         // Set up default controllers
 
         // Default controller
-        if (!empty($config->default_controller)) {
+        if ($config->default_controller) {
             self::$properties['defaultController'] = $config->default_controller;
         }
 
         // Default controller when logged in
-        if (!empty($config->default_controller_authed)) {
+        if ($config->default_controller_authed) {
             self::$properties['defaultControllerAuthed'] = $config->default_controller_authed;
         }
     }
@@ -104,7 +104,7 @@ class FrontController
         $config = new Configuration();
 
         // Force protocol
-        if (!empty($config->force_protocol)) {
+        if ($config->force_protocol) {
             $request->setProtocol($config->force_protocol);
         }
 
@@ -329,7 +329,7 @@ class FrontController
         $config = new Configuration();
 
         // Force protocol
-        if (!empty($config->force_protocol)) {
+        if ($config->force_protocol) {
             $request->setProtocol($config->force_protocol);
         }
 

@@ -62,7 +62,7 @@ class Application
             $config = new Configuration();
 
             // Force protocol
-            if (!empty($config->force_protocol)) {
+            if ($config->force_protocol) {
                 $this->request->setProtocol($config->force_protocol);
             }
 

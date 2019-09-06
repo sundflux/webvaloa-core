@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.11] - 2019-09-06
+- Fix config usage.
+
 ### [3.0.10] - 2019-09-06
 - Catch and ignore exceptions in component.
 
