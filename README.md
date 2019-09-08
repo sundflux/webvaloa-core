@@ -40,6 +40,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.12] - 2019-09-08
+- Configuration is prone for segfaults for some reason, from now in it will only serve as read-only access to configuration.
+- Rename -dist files to .dist.
+
 ### [3.0.11] - 2019-09-06
 - Fix config usage.
 

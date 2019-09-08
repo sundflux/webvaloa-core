@@ -97,12 +97,12 @@ class Bootstrap
             // Configuration exists, but is not readable, so don't proceed
 
             die('Configuration exists, but configuration is not readable.');
-        } elseif (!file_exists(WEBVALOA_BASEDIR.'/config/config.php') && file_exists(WEBVALOA_BASEDIR.'/config/config.php-stub')) {
+        } elseif (!file_exists(WEBVALOA_BASEDIR.'/config/config.php') && file_exists(WEBVALOA_BASEDIR.'/config/config.php.dist')) {
             // Configuration doesn't exist, but -stub does, so we can
             // assume clean install - copy stub file as temporary configuration
 
-            if (is_readable(WEBVALOA_BASEDIR.'/config/config.php-stub')) {
-                copy(WEBVALOA_BASEDIR.'/config/config.php-stub', WEBVALOA_BASEDIR.'/config/config.php');
+            if (is_readable(WEBVALOA_BASEDIR.'/config/config.php.dist')) {
+                copy(WEBVALOA_BASEDIR.'/config/config.php.dist', WEBVALOA_BASEDIR.'/config/config.php');
 
                 header('location: '.$_SERVER['REQUEST_URI']);
                 exit;
