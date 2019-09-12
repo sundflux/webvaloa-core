@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.14] - 2019-09-12
+- Fix db initialization catches.
+
 ### [3.0.13] - 2019-09-08
 - Just an header texts update release.
 

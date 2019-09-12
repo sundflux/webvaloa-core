@@ -272,8 +272,10 @@ class Webvaloa
                     false,
                     $initquery
                 );
+            } catch (\Libvaloa\Db\DBException $e) {
+                throw new \RuntimeException($e->getMessage());
             } catch (PDOException $e) {
-                throw new PDOException($e->getMessage());
+                throw new \RuntimeException($e->getMessage());
             }
         }
 
