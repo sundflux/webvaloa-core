@@ -58,7 +58,7 @@ class Configuration
      *
      * @param mixed $k
      *
-     * @return mixed
+     * @return mixed|\Webvaloa\config
      */
     public function __get($k)
     {
@@ -77,9 +77,11 @@ class Configuration
             }
         }
 
-        // Next we check from config.php.
-        if (isset(\Webvaloa\config::$properties[$k])) {
-            return \Webvaloa\config::$properties[$k];
+        // config.php.
+        if (class_exists('\\Webvaloa\\config')) {
+            if (isset(config::$properties[$k])) {
+                return config::$properties[$k];
+            }
         }
 
         return false;

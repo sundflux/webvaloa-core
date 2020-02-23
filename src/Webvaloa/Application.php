@@ -33,6 +33,7 @@
 
 namespace Webvaloa;
 
+use Libvaloa\Db\Db;
 use Libvaloa\Debug\Debug;
 use Webvaloa\Controller\Request;
 use stdClass;
@@ -50,8 +51,8 @@ class Application
 
     /**
      * @param $k
-     *
-     * @return stdClass|string|void|Request|DB|Plugin
+     * @return bool|stdClass|string|void|Request|Db|Plugin
+     * @throws Exception
      */
     public function __get($k)
     {

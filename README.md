@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.15] - 2020-02-23
+- Fix couple PHPStan notices.
+
 ### [3.0.14] - 2019-09-12
 - Fix db initialization catches.
 

@@ -33,6 +33,7 @@
 
 namespace Webvaloa;
 
+use Libvaloa\Db\Db;
 use Libvaloa\Debug\Debug;
 use Webvaloa\I18n\Translate\Translate;
 use Webvaloa\Locale\Locales;
@@ -230,12 +231,8 @@ class Webvaloa
     }
 
     /**
-     * Opens database connection.
-     *
-     *
-     * @return DB database connection
-     *
-     * @uses DB
+     * @return bool|Db
+     * @throws \Exception
      */
     public static function DBConnection()
     {
