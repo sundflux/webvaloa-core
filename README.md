@@ -40,6 +40,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.1.0] - 2020-04-24
+- Drop config.php support.
+- Add dependencies to libvaloa/webvaloa.
+
 ### [3.0.15] - 2020-02-23
 - Fix couple PHPStan notices.
 

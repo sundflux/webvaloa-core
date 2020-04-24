@@ -45,12 +45,10 @@ class Configuration
      */
     public function __construct()
     {
-
     }
 
     public function __set($k, $v)
     {
-
     }
 
     /**
@@ -77,14 +75,6 @@ class Configuration
             }
         }
 
-        // config.php.
-        if (class_exists('\\Webvaloa\\config')) {
-            if (isset(config::$properties[$k])) {
-                return config::$properties[$k];
-            }
-        }
-
         return false;
     }
-
 }

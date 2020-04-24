@@ -13,7 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=7.2.19"
+        "php": ">=7.2.19",
+        "sundflux/libvaloa": "^3.0.0",
+        "sundflux/libvaloa-db": "^3.0.0",
+        "sundflux/webvaloa-controller": "^3.0.0"
     },
     "autoload": {
         "psr-4": {"Webvaloa\\": "src/Webvaloa"}
